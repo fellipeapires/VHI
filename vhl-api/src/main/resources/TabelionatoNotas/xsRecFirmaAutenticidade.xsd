@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="RecFirmaAutenticidade" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="signatario" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Informações do signatário.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="deficienteVisual" type="xs:boolean">
+						<xs:annotation>
+                            <xs:documentation>Campo em que se espera a resposta à pergunta 
+                            “o signatário é deficiente visual?” (sim ou não).</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="relativamenteIncapaz" type="xs:boolean">
+						<xs:annotation>
+                            <xs:documentation>Campo em que se espera a resposta à pergunta 
+                            “o signatário é relativamente incapaz?”  (sim ou não).</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="testemunha" type="nsS:Pessoa" minOccurs="0" maxOccurs="2">
+						<xs:annotation>
+                            <xs:documentation>Quando for necessária a qualificação de testemunhas. 
+                            Podem ser relacionadas até duas testemunhas.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="paiOuResponsavel" type="nsS:Pessoa" minOccurs="0" maxOccurs="2">
+						<xs:annotation>
+                            <xs:documentation>Quando for necessária a qualificação dos pais ou responsáveis. 
+                            Podem ser relacionados até dois responsáveis.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="descricaoDocto" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Campo obrigatório destinado à descrição detalhada do 
+							documento em que se lançou a firma que se busca reconhecer. Nesta ocasião, 
+							importante que o notário atente para elementos que distingam e individualizem 
+							o documento, de modo a proporcionar a perfeita verificação de autenticidade 
+							do ato por meio da consulta pública do Selo Digital.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ressalva" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Campo destinado à inserção de informações referentes a 
+							eventuais ressalvas do documento, como rasuras, por exemplo. Opcional.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>	
+					<xs:element name="tranferenciaVeiculo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Obrigatório quando o selo for do tipo DUT.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="placa">
+									<xs:annotation>
+										<xs:documentation>Código composto por três letras e quatro números (ou quatro letras e três números no padrão Mercosul) que identifica uma placa de veículo automotor.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:pattern value="[A-Z]{3}\d{1}[A-Z|0-9]{1}\d{2}"/>											
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="renavam">
+									<xs:annotation>
+										<xs:documentation>Número do RENAVAM. Apenas os dígitos.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:pattern value="\d+"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>						
+								<xs:element name="cpfCnpjComprador" type="nsS:string255">
+									<xs:annotation>
+										<xs:documentation>Número do CFP ou do CNPJ do comprador.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="nomeComprador" type="nsS:string255" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Nome do comprador do veículo.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>			
+				</xs:sequence>
+			</xs:extension>			
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

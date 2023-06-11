@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CAusencia" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão 
+                            com campos específicos para o registro civil.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="ausente" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações da pessoa 
+                            que está ausente.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="curador" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações do curador. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="ausenteDesde" type="xs:date">
+						<xs:annotation>
+                            <xs:documentation>Neste campo, espera-se a informação da data desde a qual 
+                            a pessoa tornou-se ausente.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="processoJudicial" type="nsS:ProcessoJudicial">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do número do processo judicial
+                             do qual decorreu a declaração de ausência. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

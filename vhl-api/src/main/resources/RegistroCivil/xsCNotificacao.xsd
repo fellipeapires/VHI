@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CNotificacao" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="notificado" type="nsS:Pessoa" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações da pessoa que 
+                            está sendo notificada. Devem ser relacionados tantos quanto estiverem sendo 
+                            notificados.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="notificacao" type="nsS:IntimacaoPessoal" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo obrigatório devem ser informados os dados das 
+                            intimações que são efetuadas pessoalmente. 
+                            Devem ser preenchidas informações para cada um dos notificados, uma vez que 
+                            as informações requeridas poderão variar para cada um deles.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="tipoDocumento">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à inserção da descrição básica do documento 
+                            sobre o qual está sendo realizada a notificação (contrato, nota fiscal etc.).</xs:documentation>
+                        </xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="nsS:string4000"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="valorNegocio" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>O valor monetário constante do título ou do documento 
+                            apresentado para registro. Opcional.</xs:documentation>
+                        </xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="tipoRegistroAverbacao" type="xs:int" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Qualificação da espécie de título ou documentos apresentados 
+                            para registro, conforme manual de tabelas padronizadas, item 2.9. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

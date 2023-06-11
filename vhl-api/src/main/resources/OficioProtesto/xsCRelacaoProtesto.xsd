@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:include schemaLocation="xsDevedor.xsd"/>
+	<xs:complexType name="CRelacaoProtesto" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão.</xs:documentation>
+                        </xs:annotation>
+					</xs:element>
+					<xs:element name="devedor" type="nsS:Devedor" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Cada um dos devedores relacionados na certidão (podem ser 
+							informados vários elementos “devedor” em cada certidão).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

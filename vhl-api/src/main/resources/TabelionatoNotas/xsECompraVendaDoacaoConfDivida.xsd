@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="ECompraVendaDoacaoConfDivida" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outorgante" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgantes da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outorgado" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgados da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="corretor" type="nsS:Corretor" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo para as informações do corretor. Devem ser informados 
+                            o “nomeCorretor” e do “numeroCreci”, quando o negócio for por ele intermediado, 
+                            ocasião em que será obrigatório. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="itcmd" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do imposto de transmissão causa 
+                            mortis e doação. Esperam-se que sejam informados o “nome do imposto”, “número 
+                            do documento” (número do comprovante de pagamento), “data do pagamento” e 
+                            “valor pago”. A precisão destas informações é fundamental para a auditoria do 
+                            sistema de inspeções virtuais. Permite-se a listagem de várias guias de ITCMD, 
+                            tantas quanto forem emitidas. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outrosImpostos" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação de todos os demais impostos 
+                            envolvidos no ato. Esperam-se que sejam informados o “nome do imposto”, 
+                            “número do documento” (número do comprovante de pagamento), “data do pagamento” 
+                            e “valor pago”. A precisão destas informações é fundamental para a auditoria 
+                            do sistema de inspeções virtuais. Permite-se a listagem de várias guias de 
+                            impostos, tantas quanto forem emitidas. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

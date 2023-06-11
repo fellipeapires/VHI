@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="xsCAusencia.xsd"/>
+	<xs:include schemaLocation="xsCCasamento.xsd"/>
+	<xs:include schemaLocation="xsCEmancipacao.xsd"/>
+	<xs:include schemaLocation="xsCHabilitacaoCasamento.xsd"/>
+	<xs:include schemaLocation="xsCInterdicao.xsd"/>
+	<xs:include schemaLocation="xsCInteiroTeor.xsd"/>
+	<xs:include schemaLocation="xsCMortePresumida.xsd"/>
+	<xs:include schemaLocation="xsCNascimento.xsd"/>
+	<xs:include schemaLocation="xsCNatimorto.xsd"/>
+	<xs:include schemaLocation="xsCNegativa.xsd"/>
+	<xs:include schemaLocation="xsCNotificacao.xsd"/>
+	<xs:include schemaLocation="xsCObito.xsd"/>
+	<xs:include schemaLocation="xsCPersonalidadeJuridica.xsd"/>
+	<xs:include schemaLocation="xsCRegistroPJ.xsd"/>
+	<xs:include schemaLocation="xsCRegistroTD.xsd"/>
+	<xs:include schemaLocation="xsEditalProclamas.xsd"/>
+</xs:schema>

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+	jaxb:extensionBindingPrefixes="hj orm"
+	jaxb:version="2.1"
+	targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../Comum/xsComum.xsd" />
+    <xs:complexType name="AtoArtigo183Lei6015" mixed="false">
+        <xs:complexContent mixed="false">
+            <xs:extension base="nsS:AtoSelado">
+                <xs:sequence>
+                    <xs:element name="tipoFato" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Descrição do ato praticado, que deve incluir todas as informações 
+                            textuais nele inseridas. Na prática, funciona como campo destinado ao inteiro 
+                            teor do ato de registro/averbação praticado.</xs:documentation>
+                            <xs:appinfo>
+								<hj:basic>
+									<orm:lob />
+								</hj:basic>
+							</xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:choice>
+                        <xs:element name="IDRegistro" type="nsS:string255">
+                            <xs:annotation>
+                                <xs:documentation>Destinado à informação da identificação do ato de registro.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="IDAverbacao" type="nsS:string255">
+                            <xs:annotation>
+                                <xs:documentation>Identificação da averbação.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element name="tipoRegistroAverbacao" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>Destinado ao preenchimento do código do ato de registro/averbação 
+                            praticado, conforme manual de tabelas padronizadas, item 2.9. A tabela contém a 
+                            listagem dos típicos atos de registro/averbação de que trata a Lei dos Registros 
+                            Públicos e os demais normativos sobre a matéria.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="protocolo" type="nsS:Protocolo">
+                        <xs:annotation>
+                            <xs:documentation>Campo destinado à informação do protocolo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="registro" type="nsS:Registro">
+                        <xs:annotation>
+                            <xs:documentation>Campo destinado ao conjunto de elementos que 
+                            identifica o registro de um ato nos livros da serventia. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numeroAssento" type="nsS:string255">
+                        <xs:annotation>
+                            <xs:documentation>Número da matrícula ou do registro (este último quando 
+                            não se tratar de matrícula).</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numeroSeloEscritura" type="nsS:string255" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Número de série do selo utilizado na escritura 
+                            (referente ao imóvel de que trata o registro), quando houver (qualquer selo, 
+                            não apenas selo digital oriundo de serventias de Santa Catarina). Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="partes" type="nsS:ParteEscritura" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações de todas as pessoas. 
+                            Devem ser relacionados tantos quanto forem os envolvidos.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="imovel" type="nsS:Imovel" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Campo para as informações do imóvel.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="valorObjeto" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Valor do objeto para atos praticados no registro auxiliar, 
+                            que não se refiram a imóvel (o valor do imóvel encontra-se na estrutura “imovel”, 
+                            acima). Opcional.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:fractionDigits value="2" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="numeroUnidadesAutonomas" type="xs:int" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Número de unidades autônomas. Somente para o registro de 
+                            incorporação, loteamento e desmembramento. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="matriculaNacional" type="xs:int" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Número nacional da matrícula do registro de imóveis 
+                            (deve ser utilizado quando efetivamente adotado). Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

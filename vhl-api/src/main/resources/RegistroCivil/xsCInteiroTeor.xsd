@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CInteiroTeor" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. O campo ‘observacoes’ deve ser 
+                            preenchido com o inteiro teor dos dados constantes da certidão solicitada.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

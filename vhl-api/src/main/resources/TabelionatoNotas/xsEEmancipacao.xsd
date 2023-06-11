@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="EEmancipacao" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="filiacao" type="nsS:ParteEscritura" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo deve-se informar o parentesco do emancipado. 
+                            Devem ser informados tantos quantos existirem – pelo menos um é obrigatório.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>					
+					<xs:element name="tutor" type="nsS:ParteEscritura" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório apenas quando o emancipando possuir 
+                            tutor. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="emancipado" type="nsS:ParteEscritura">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório em que se exigem as informações 
+                            completas do emancipado.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

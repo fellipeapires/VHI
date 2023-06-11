@@ -1,0 +1,159 @@
+<xs:schema targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"	 
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"	 
+	xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"	 
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	jaxb:extensionBindingPrefixes="hj orm" 
+	jaxb:version="2.1">  
+	<xs:include schemaLocation="xsPessoa.xsd"/>
+	<xs:complexType name="TituloCredito">
+		<xs:annotation>
+			<xs:documentation>Define o conjunto de informações que compõem os títulos de crédito.</xs:documentation>
+			<xs:appinfo>
+				<hj:entity>
+					<orm:sequence-generator name="Generator_TITULOCREDITO" sequence-name="SEQ_TITULOCREDITO"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="codigoTitulo" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código do título adotado pela serventia (por ex. 1- cheque, 
+					2-duplicata etc.).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipoTitulo" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código do tipo de título (espécie), conforme conforme manual 
+					de tabelas padronizadas item 2.26.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numeroTitulo" type="nsS:string255">			
+				<xs:annotation>
+					<xs:documentation>Número estampado no título de crédito.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codigoBanco">
+				<xs:annotation>
+					<xs:documentation>Código FEBRABAN do banco apresentante, conforme manual de tabelas
+					padronizadas item 2.10. Em caso de título não vinculado a banco, deve-se informar "0".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="nsS:string255">
+						<xs:length value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nossoNumero" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Informação constante do título de crédito. Em caso de título não 
+					vinculado ao banco, preencher com “não informado”;</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataEmissao" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Data de emissão do título.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataVencimento" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Data de vencimento do título.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valorTitulo">
+				<xs:annotation>
+					<xs:documentation>Valor total estampado no título. Campo com 2 casas decimais.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="valorProtestado">
+				<xs:annotation>
+					<xs:documentation>A despeito do valor do título, deve-se informar o valor 
+					efetivamente protestado (ex. parcelas vencidas de um contrato). Campo com 2 
+					casas decimais.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pracaPagamento" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código da praça de pagamento do título (município), conforme 
+					manual de tabelas padronizadas item 2.13.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipoEndosso" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código do tipo de endosso, conforme manual de tabelas 
+					padronizadas item 2.5. Caso não haja, preencher com "0".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moeda" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código da moeda do título, conforme  manual de tabelas
+					padronizadas item 2.19</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="formaPagamento" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código da forma de pagamento, conforme manual de tabelas
+					padronizadas item 2.27.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="situacaoTitulo" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicador da situação do título, conforme manual de tabelas 
+					padronizadas item 2.25. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tituloAceito" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Resposta a pergunta "O título foi aceito?" (sim ou não). 
+					Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="protocoloDistribuicao" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Número do protocolo de distribuição do título, informado pelo 
+					próprio serviço de distribuição - obrigatório para as comarcas em que haja 
+					distribuição. Caso contrário é opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataDistribuicao" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data da distribuição do título - obrigatório apenas para 
+					as comarcas em que haja distribuição. Caso contrário é opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="credor" type="nsS:PessoaResumo" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Informações do credor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="devedor" type="nsS:Pessoa">
+				<xs:annotation>
+					<xs:documentation>Informações do devedor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="devedorSolidario" type="nsS:Pessoa" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Qualificação de todos os devedores solidários, se houver.
+					Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avalista" type="nsS:Pessoa" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Qualificação de todos os avalistas, se houver. 
+					Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

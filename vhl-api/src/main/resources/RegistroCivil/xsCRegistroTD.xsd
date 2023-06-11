@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CRegistroTD" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão 
+                            com campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="protocolo" type="nsS:Protocolo">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do protocolo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="partes" type="nsS:Pessoa" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações de todas as 
+                            pessoas. Devem ser relacionados tantos quanto forem os envolvidos. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="denominacaoAto">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado ao preenchimento da denominação do documento 
+                            a ser registrado (por exemplo: notificação, contrato de penhor etc.).</xs:documentation>
+                        </xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="nsS:string4000"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="valorNegocio" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>O valor monetário constante do título ou do documento 
+                            apresentado para registro. Opcional.</xs:documentation>
+                        </xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="tipoRegistroAverbacao" type="xs:int" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Qualificação espécie de título ou dos documentos 
+                            apresentados para registro, conforme manual de tabelas padronizadas, 
+                            item 2.9. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

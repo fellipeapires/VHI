@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CObito" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão 
+                            com campos específicos para o registro civil.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:choice>
+						<xs:element name="nomeDeclarante" type="nsS:string255">
+							<xs:annotation>
+	                            <xs:documentation>O nome da pessoa responsável pela declaração 
+	                            de nascimento perante a serventia</xs:documentation>
+	                        </xs:annotation>
+                    	</xs:element>
+						<xs:element name="processoJudicial" type="nsS:ProcessoJudicial">
+							<xs:annotation>
+	                            <xs:documentation>Caso o registro de nascimento seja decorrente de decisão 
+	                            judicial, informar o número do processo.</xs:documentation>
+	                        </xs:annotation>
+	                    </xs:element>
+					</xs:choice>					
+					<xs:element name="deCujus" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações da pessoa que 
+                            veio a óbito.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="filiacao" type="nsS:string255" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo deve-se informar o nome do parentesco do 
+                            falecido. Devem ser informados tantos quantos existirem – pelo menos um 
+                            é obrigatório.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataFalecimento" type="xs:dateTime">
+						<xs:annotation>
+                            <xs:documentation>Campo em que deve ser informada a data e a hora do falecimento.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>						
+					<xs:element name="causaMorte" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto em que deve ser informada a causa da morte.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="localFalecimento" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto em que deve ser informado o local de 
+                            nascimento/falecimento. Preferencialmente, deve-se inserir o endereço do local.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="localSepultamento" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto em que deve ser informado o local de 
+                            sepultamento do falecido. Preferencialmente, deve-se inserir o 
+                            endereço do local.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="medico" type="nsS:Medico">
+						<xs:annotation>
+                            <xs:documentation>Informações do médico.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="numeroDO" type="nsS:string255">
+						<xs:annotation>
+							<xs:documentation>Campo em que se espera o número da declaração de óbito (DO).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="matricula" type="nsS:MatriculaRegistro">
+						<xs:annotation>
+							<xs:documentation>Número da matrícula obtida pelo registro de óbito em conclusão, 
+							no padrão do CNJ, com um total de 32 dígitos.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

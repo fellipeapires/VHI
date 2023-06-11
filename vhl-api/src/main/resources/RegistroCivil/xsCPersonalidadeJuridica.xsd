@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CPersonalidadeJuridica" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da 
+                            certidão com campos específicos para o registro civil.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="protocolo" type="nsS:Protocolo" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do protocolo. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="denominacaoPJ" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo que se destina à descrição da denominação da 
+                            pessoa jurídica tratada na certidão de personalidade jurídica.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="tipoDocumento" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Neste campo, deve ser descrito o tipo de documento 
+                            registrado na serventia.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CNatimorto" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:choice>
+						<xs:element name="nomeDeclarante" type="nsS:string255">
+							<xs:annotation>
+	                            <xs:documentation>O nome da pessoa responsável pela declaração 
+	                            de nascimento perante a serventia</xs:documentation>
+	                        </xs:annotation>
+                    	</xs:element>
+						<xs:element name="processoJudicial" type="nsS:ProcessoJudicial">
+							<xs:annotation>
+	                            <xs:documentation>Caso o registro de nascimento seja decorrente de decisão 
+	                            judicial, informar o número do processo.</xs:documentation>
+	                        </xs:annotation>
+	                    </xs:element>
+					</xs:choice>
+					<xs:element name="nome" type="nsS:string255" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo em que se espera o nome da pessoa cujo registro de 
+                            natimorto está sendo realizado (nome do natimorto). Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="filiacao" type="nsS:PessoaFiliacao" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo deve-se informar a filiação do natimorto. 
+                            O campo foi especializado para representar o modelo pai(mãe)/avós, porém 
+                            livre da definição de gênero. Reflete, portanto, uma filiação e seus 
+                            progenitores. Para cada filiação é necessário relacionar ao menos um 
+                            progenitor – é possível relacionar tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="sexo" type="nsS:sexo">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do gênero biológico da pessoa 
+                            que se pretende registrar.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="tempoGestacao" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do tempo de gestação do natimorto.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataHoraFalecimento" type="xs:dateTime">
+						<xs:annotation>
+                            <xs:documentation>Campo em que deve ser informada a data e a hora do falecimento.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>						
+					<xs:element name="causaMorte" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto em que deve ser informada a causa da morte.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="localFalecimento" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto em que deve ser informado o local de 
+                            nascimento/falecimento. Preferencialmente, deve-se inserir o endereço do local.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="localSepultamento" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto em que deve ser informado o local de 
+                            sepultamento do natimorto. Preferencialmente, deve-se inserir o endereço do local.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="medico" type="nsS:Medico">
+						<xs:annotation>
+							<xs:documentation>Nesta estrutura, deve-se preencher o “nome do médico”, 
+							além das informações do documento em que são esperados o “tipo de documento” 
+							conforme manual de tabelas padronizadas, item 2.21, “número do documento”, e 
+							opcionalmente o “órgão emissor” e “data de emissão”.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>				
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CNegativaBens" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="consultado" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Campo obrigatório destinado ao cadastramento de cada um dos 
+							consultados pesquisados. Devem ser informados tantos quantos forem eles.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="nsS:PessoaResumo">
+									<xs:sequence>
+										<xs:element name="bensEncontrados" type="xs:boolean">
+											<xs:annotation>
+												<xs:documentation>Campo destinado à resposta à pergunta 
+												“foram encontrados bens de propriedade do consultado?” 
+												(sim ou não).</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="matricula" type="nsS:string255" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Campo destinado à informação da matrícula 
+												do bem, apenas caso seja(m) encontrado(s) bem(ns) em nome do 
+												consultado. Opcional.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="registroAnterior" type="nsS:Registro" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Caso a matrícula encontrada decorra de um 
+												registro de transcrição anterior, deve-se informá-lo.
+												Opcional.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="numeroTranscricao" type="nsS:string255" minOccurs="0">
+											<xs:annotation>
+					                            <xs:documentation>Campo destinado à informação do número da 
+					                            transcrição do registro anterior. Opcional.</xs:documentation>
+					                        </xs:annotation>
+					                    </xs:element>										
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+                    <xs:element name="matriculaNacional" type="xs:int" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Número nacional da matrícula do registro de imóveis 
+                            (deve ser utilizado quando efetivamente adotado). Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

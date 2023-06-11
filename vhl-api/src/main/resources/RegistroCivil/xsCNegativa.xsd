@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CNegativa" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="nomeDaParte" type="nsS:string255" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nome da parte cuja existência do registro se objetiva pesquisar. 
+                            Deve ser informado pelo menos um, e tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="tipoFato" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto destinado à descrição da informação cuja 
+                            existência se pretende pesquisar.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:choice>
+						<xs:element name="dataFato" type="xs:date">
+							<xs:annotation>
+	                            <xs:documentation>Campo destinado à informação da data pesquisada.</xs:documentation>
+	                        </xs:annotation>
+	                    </xs:element>
+						<xs:sequence>
+							<xs:element name="dataInicioAnalise" type="xs:date">
+								<xs:annotation>
+		                            <xs:documentation>Data do início da análise, no caso de período.</xs:documentation>
+		                        </xs:annotation>
+		                    </xs:element>
+							<xs:element name="dataFimAnalise" type="xs:date">
+								<xs:annotation>
+		                            <xs:documentation>Data do fim da análise, no caso de perído.</xs:documentation>
+		                        </xs:annotation>
+		                    </xs:element>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

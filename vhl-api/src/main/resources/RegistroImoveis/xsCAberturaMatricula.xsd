@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML 2013 Designer Edition (Trial) 11.0.11.4603 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+	jaxb:extensionBindingPrefixes="hj orm"
+	jaxb:version="2.1"
+	targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../Comum/xsComum.xsd" />
+    <xs:complexType name="CAberturaMatricula" mixed="false">
+        <xs:complexContent mixed="false">
+            <xs:extension base="nsS:AtoSelado">
+                <xs:sequence>
+                    <xs:element name="protocolo" type="nsS:Protocolo" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Campo destinado à informação do protocolo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="imovel" type="nsS:Imovel">
+                        <xs:annotation>
+                            <xs:documentation>Campo para as informações do imóvel.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="partes" type="nsS:ParteEscritura" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações de todas as pessoas. 
+                            Devem ser relacionados tantos quanto forem os envolvidos.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="registroAnterior" type="nsS:Registro" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Caso a matrícula encontrada decorra de um registro de transcrição 
+                            anterior, deve-se informá-lo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numeroTranscricao" type="nsS:string255" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do número da transcrição do 
+                            registro anterior, se houver. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="matriculaNacional" type="xs:int" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Número nacional da matrícula do registro de imóveis 
+                            (deve ser utilizado quando efetivamente adotado). Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="EDeclaratoria" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="declarante" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+							declarantes da escritura, que são as partes que estão diretamente 
+							envolvidas no ato/negócio jurídico.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="unidadesAutonomas" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Quantidade de unidades autônomas, se houver. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

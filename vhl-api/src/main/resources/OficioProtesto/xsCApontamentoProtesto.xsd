@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CApontamentoProtesto" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>		
+					<xs:element name="apontamento" type="nsS:ApontamentoProtesto">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações do apontamento do protesto</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

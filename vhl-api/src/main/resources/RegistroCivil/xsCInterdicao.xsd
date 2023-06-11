@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CInterdicao" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="interditado" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações da pessoa que está 
+                            sendo interditada.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="curador" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações do curador da pessoa 
+                            que está sendo interditada</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="causaInterdicao" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Campo textual livre destinado à inserção das causas da 
+							interdição.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataFimInterdicao" type="xs:date" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Neste campo, espera-se a informação da data desde a qual 
+                            a pessoa deixou de ser interditada. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="processoJudicial" type="nsS:ProcessoJudicial">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado à informação do número do 
+                            processo judicial do qual decorreu a declaração de interdição. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

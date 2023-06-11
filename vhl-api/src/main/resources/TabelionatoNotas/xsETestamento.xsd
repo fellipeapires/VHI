@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="ETestamento" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="testador" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+							testadores envolvidos no ato. Devem ser informados tantos quantos existirem.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="testamenteiro" type="nsS:ParteEscritura" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+							testamenteiros envolvidos no ato. Devem ser informados tantos quantos existirem.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="tipoTestamento" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Código do tipo de testamento, confome manual de 
+							tabelas padronizadas item 2.8.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nascituro" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Campo em que se espera a informação do numero de 
+							nascituros filhos do testador. Quando não houver, informar "0".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

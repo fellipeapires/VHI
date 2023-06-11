@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"            
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" 
+           xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+           jaxb:extensionBindingPrefixes="hj orm" 
+           jaxb:version="2.1"
+           targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" 
+           version="4.0">
+	<xs:include schemaLocation="Comum/xsComum.xsd"/>
+	<xs:include schemaLocation="OficioProtesto/xsOficioProtesto.xsd"/>
+	<xs:include schemaLocation="TabelionatoNotas/xsTabelionatoNotas.xsd"/>
+	<xs:include schemaLocation="RegistroCivil/xsRegistroCivil.xsd"/>
+	<xs:include schemaLocation="RegistroImoveis/xsRegistroImoveis.xsd"/>
+	<xs:element name="messageAtos">
+		<xs:annotation>
+			<xs:documentation>Conjunto dos atos sendo transmitidos.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:annotation>
+				<xs:appinfo>
+					<hj:entity>
+						<orm:sequence-generator name="Generator_MESSAGEATOS" sequence-name="SEQ_MESSAGEATOS"/>
+					</hj:entity>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="messageID" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Código sequencial do arquivo para controle da Serventia.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Data/Hora da geração do arquivo.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="codigoServentia" type="xs:int" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Código da Serventia.</xs:documentation>
+						<xs:appinfo>Tabela Padronizada: 3.2 - Cartórios</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="atos">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ato" type="nsS:Ato" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Cada um dos diversos atos sendo transmitidos.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Signature" type="xs:anyType" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required" fixed="4.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

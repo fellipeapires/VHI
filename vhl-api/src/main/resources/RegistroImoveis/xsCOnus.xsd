@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="COnus" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRI" type="nsS:CertidaoRI">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da certidão específica 
+                            do registro de imóveis.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>	
+					<xs:element name="constaOnusReais" type="xs:boolean">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado à resposta à pergunta 
+                            “O imóvel de que trata a matrícula/registro possui ônus reais?” (sim ou não).</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="descricaoOnus" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Campo destinado à inserção do texto completo do ônus, 
+							obrigatório apenas quando houver. Opcional.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

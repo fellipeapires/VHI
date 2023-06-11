@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="EditalProclamas" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="conjuge" type="nsS:Conjuge" minOccurs="2" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Dados do cônjuge. Devem ser informados pelo menos 2, e 
+                            tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="regimeBens" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto destinado à informação do regime patrimonial 
+                            de bens adotado, dentre as opções “comunhão parcial”, “comunhão universal”, 
+                            “participação final nos aquestos”, “separação de bens” e “não informado”.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataPublicacao" type="xs:date">
+						<xs:annotation>
+                            <xs:documentation>Data da publicação do edital de proclamas.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="localPublicacao" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à descrição do local em que foi publicado 
+                            o edital de proclamas.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

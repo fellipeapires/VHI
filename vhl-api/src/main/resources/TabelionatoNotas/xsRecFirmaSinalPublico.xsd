@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="RecFirmaSinalPublico" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="nomeSignatario" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do nome do signatário 
+                            do sinal público.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="nomeOficioSignatario" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Nome da serventia a que se refere o sinal público.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="descricaoDocumento" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Campo destinado à descrição detalhada do documento em que se 
+							lançou a firma que se busca reconhecer. Nesta ocasião, importante que o notário 
+							atente para elementos que distingam e individualizem o documento, de modo a 
+							proporcionar a perfeita verificação de autenticidade do ato por meio da consulta 
+							pública do Selo Digital.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ressalva" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Campo destinado à inserção de informações referentes a eventuais 
+							ressalvas do documento, como rasuras, por exemplo. Opcional.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

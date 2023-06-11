@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"	 
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"	 
+	xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"	 
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	jaxb:extensionBindingPrefixes="hj orm" 
+	jaxb:version="2.1">  
+	<xs:include schemaLocation="xsSimpleTypes.xsd"/>
+	<xs:complexType name="Pessoa">
+		<xs:annotation>
+			<xs:documentation>Informações completas de uma pessoa.</xs:documentation>
+			<xs:appinfo>
+				<hj:entity>
+					<orm:sequence-generator name="Generator_PESSOA" sequence-name="SEQ_PESSOA"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nomePessoa" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Nome da pessoa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipoPessoa" type="nsS:TipoPessoa">
+				<xs:annotation>
+					<xs:documentation>Tipo de pessoa. O campo é uma lista enumerada e pode assumir 
+					os seguintes valores: Física, Jurídica.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="estadoCivil" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código do estado civil, conforme manual de tabelas 
+					padronizadas, item 2.17. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profissao" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código da profissão, conforme manual de tabelas 
+					padronizadas, item 2.20. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nacionalidade" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código da nacionalidade, conforme manual de tabelas padronizadas
+					item 2.11. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data de nascimento da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documento" type="nsS:Documento" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos diversos documentos da pessoa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endereco" type="nsS:Endereco" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos endereços da pessoa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="telefone" type="nsS:Telefone" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos telefones da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="nsS:Email" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos e-mails da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sexo" type="nsS:sexo">
+				<xs:annotation>
+					<xs:documentation>Sexo biológico da pessoa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PessoaResumo">
+		<xs:annotation>
+			<xs:documentation>Informações resumidas de uma pessoa.</xs:documentation>
+			<xs:appinfo>			
+				<hj:entity>
+					<orm:sequence-generator name="Generator_PESSOARESUMO" sequence-name="SEQ_PESSOARESUMO"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nomePessoa" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Nome da pessoa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipoPessoa" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Tipo de pessoa. O campo é uma lista enumerada e pode assumir 
+					os seguintes valores: Física, Jurídica.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="estadoCivil" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código do estado civil, conforme manual de tabelas padronizadas
+					item 2.17. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profissao" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código da profissão, conforme manual de tabelas padronizadas
+					item 2.20. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nacionalidade" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código da nacionalidade, conforme manual de tabelas padronizadas
+					item 2.11. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data de nascimento da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documento" type="nsS:Documento" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos diversos documentos da pessoa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endereco" type="nsS:Endereco" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos endereços da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="telefone" type="nsS:Telefone" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos telefones da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="nsS:Email" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada um dos e-mails da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sexo" type="nsS:sexo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Sexo biológico da pessoa. Opcional.</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PessoaFiliacao">
+		<xs:sequence>
+			<xs:element name="pessoa" type="nsS:Pessoa">
+				<xs:annotation>
+			    	<xs:documentation>Dados completos da pessoa.</xs:documentation>
+			    </xs:annotation>
+			</xs:element>			
+			<xs:element name="progenitor" type="nsS:string255" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+                	<xs:documentation>Nome do parentesco da filiação. Devem ser informados tantos 
+                	quantos existirem – pelo menos um é obrigatório.</xs:documentation>
+                </xs:annotation>
+       		</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Documento">
+		<xs:annotation>
+			<xs:documentation>Documento define o conjunto de elementos que compõem um documento.</xs:documentation>
+			<xs:appinfo>
+				<hj:entity>
+					<orm:sequence-generator name="Generator_DOCUMENTO" sequence-name="SEQ_DOCUMENTO"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipoDocumento" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código do tipo de documento, conforme tabela padronizada 3.21.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numero" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Número do documento.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="orgaoEmissor" type="nsS:string255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Órgão emissor do documento.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataEmissao" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data de emissão do documento.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Telefone">
+		<xs:annotation>
+			<xs:documentation>Telefone define o conjunto de elementos que compõem um número de telefone.</xs:documentation>
+			<xs:appinfo>
+				<hj:entity>
+					<orm:sequence-generator name="Generator_TELEFONE" sequence-name="SEQ_TELEFONE"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipoTelefone" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Código do tipo de telefone, conforme tabela padronizada 3.29.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ddd" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Código de DDD do telefone.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numero" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Número do telefone.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Endereco">
+		<xs:annotation>
+			<xs:documentation>Endereço define o conjunto de elementos que compõem um endereço.</xs:documentation>
+			<xs:appinfo>
+				<hj:entity>
+					<orm:sequence-generator name="Generator_ENDERECO" sequence-name="SEQ_ENDERECO"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipoEndereco" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código do tipo de endereço, conforme tabela padronizada 3.23.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descricaoLogradouro" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Descrição do logradouro.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numero" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Número do endereço.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bairro" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Bairro do endereço.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="complemento" type="nsS:string255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Complemento do endereço.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation>Endereço no Brasil.</xs:documentation>
+					</xs:annotation>
+					<xs:element name="cidade" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Código da cidade, conforme tabela padronizada 3.15.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uf" type="nsS:UF">
+						<xs:annotation>
+							<xs:documentation>Sigla da Unidade da Federação.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="cep" type="nsS:string255">
+						<xs:annotation>
+							<xs:documentation>Código de endereçamento postal do endereço.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation>Endereço no exterior.</xs:documentation>
+					</xs:annotation>
+					<xs:element name="cidadeExterior" type="nsS:string255"/>
+					<xs:element name="pais" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Código do país, conforme tabela padronizada 3.16.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Email">
+		<xs:annotation>
+			<xs:documentation>E-mail define o conjunto de elementos que compõem um e-mail.</xs:documentation>
+			<xs:appinfo>
+				<hj:entity>
+					<orm:sequence-generator name="Generator_EMAIL" sequence-name="SEQ_EMAIL"/>
+				</hj:entity>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipoEmail" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Tipo de e-mail, conforme tabela padronizada 3.22.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="enderecoEmail" type="nsS:string255">
+				<xs:annotation>
+					<xs:documentation>Endereço de e-mail.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="EProcuracao" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outorgante" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgantes da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outorgado" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgados da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataValidade" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Quando constar no ato, deve ser inserida neste campo 
+							a informação da data de validade da procuração. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="tipoProcuracao" type="xs:int">	
+						<xs:annotation>
+							<xs:documentation>Neste campo deve ser informado o código do tipo da 
+							procuração que se está a lavrar, de acordo o manual de tabelas 
+							padronizadas, item 2.6.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="poderesEspeciais" type="nsS:string255">
+						<xs:annotation>
+							<xs:documentation>Campo de texto livre destinado à informação dos poderes 
+							especiais constantes do instrumento de procuração (limitado a 255 caracteres).</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="poderesEspeciaisUniaoEstavel" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Campo destinado a resposta à pergunta “Na procuração constam 
+							poderes especiais para declarar se outorgante vive em união estável?” (sim e não).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="causaPropriaImovel" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Quando se tratar de procuração do tipo “em causa própria”, 
+							devem ser qualificados o “corretor”, informações do “ITCMD” e os demais 
+							impostos envolvidos no ato.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="corretor" type="nsS:Corretor" minOccurs="0">
+									<xs:annotation>
+			                            <xs:documentation>Campo para as informaçõees do corretor. 
+			                            Devem ser informados o “nomeCorretor” e do “numeroCreci”, 
+			                            quando o negócio for por ele intermediado, ocasião em que 
+			                            será obrigatório. Opcional.</xs:documentation>
+			                        </xs:annotation>
+			                    </xs:element>
+								<xs:element name="itcmd" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+			                            <xs:documentation>Campo destinado à informação do imposto de 
+			                            transmissão causa mortis e doação</xs:documentation>
+			                        </xs:annotation>
+			                    </xs:element>
+								<xs:element name="outrosImpostos" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+			                            <xs:documentation>Campo destinado à informação de todos os demais 
+			                            impostos envolvidos no ato.</xs:documentation>
+			                        </xs:annotation>
+			                    </xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="numeroSerieSeloProcuracaoOriginal" type="nsS:string255" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Quando se tratar de instrumento de revogação de procuração, 
+							deve ser informado nesse campo o código de série do selo utilizado na procuração 
+							original, em campo de texto livre, que admite não apenas as informações de selos 
+							no padrão alfanumérico do Selo Digital, mas também selos de série antiga e de 
+							outros estados, quando houver. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataRevogacao" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Quando tratar-se de revogação, informar a data da revogação. 
+							Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

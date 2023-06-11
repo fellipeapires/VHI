@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+           targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../Comum/xsComum.xsd" />
+    <xs:complexType mixed="false" name="CCasamento">
+        <xs:complexContent mixed="false">
+            <xs:extension base="nsS:AtoSelado">
+                <xs:sequence>
+                    <xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão 
+                            com campos específicos para o registro civil.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="conjuge" type="nsS:Conjuge" minOccurs="2" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Dados do cônjuge. Devem ser informados pelo menos 2. 
+                            Contudo, o campo admite sejam inseridos tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="regimeBens" type="nsS:RegimeBens">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto destinado à informação do regime patrimonial 
+                            de bens adotado, dentre as opções “comunhão parcial”, “comunhão universal”, 
+                            “participação final nos aquestos”, “separação de bens” e “não informado”.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="cpfJuizdePaz">
+                        <xs:annotation>
+                            <xs:documentation>Campo de texto destinado à informação do número do CPF do 
+                            Juiz de Paz que realizou a cerimônia do casamento, disponível no cadastro de 
+                            Juízes de Paz conforme manual de tabelas padronizadas, item 2.31.
+                            Caso inexistente, no assento, o número do CPF do Juiz de Paz, deve-se preencher 
+                            o campo com onze zeros (00000000000), e, no campo observações, deve-se incluir 
+                            a informação de que o assento não apresenta o CPF do Juiz de Paz.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="nsS:string255">
+                                <xs:pattern value="\d{11}" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="perimetroUrbano" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Campo que espera a resposta à pergunta “O casamento foi 
+                            realizado dentro do perímetro urbano?” (sim ou não), para fins de ressarcimento.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dentroServentia" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Campo que espera a resposta à pergunta “O casamento foi 
+                            realizado dentro da serventia?” (sim ou não), para fins de ressarcimento.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dentroExpediente" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Campo que espera a resposta à pergunta “O casamento foi 
+                            realizado dentro do horário do expediente?” (sim ou não), para fins de ressarcimento.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="seloHabilitacao" type="nsS:SerieSelo">
+                        <xs:annotation>
+                            <xs:documentation>Campo destinado à informação número de série (código) do selo 
+                            empregado na Certidão de Habilitação para Casamento, no padrão AAA00000. Caso 
+                            se trate de habilitação levada a efeito por serventia de outro estado que não 
+                            utilize selo de fiscalização ou adote outro padrão de numeração, deve-se 
+                            preencher o campo com a expressão “AAA00000”.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="matricula" type="nsS:MatriculaRegistro">
+                        <xs:annotation>
+                            <xs:documentation>Número de matrícula obtido pelo casamento de acordo com o 
+                            padrão nacional de matrícula estabelecido pelo Conselho Nacional de Justiça.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="casamentoColetivo" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Campo que espera a resposta à pergunta “O casamento foi 
+                            coletivo?” (sim ou não), entende-se singular, caso contrário.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

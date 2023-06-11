@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="InstrumentoProtesto" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="apontamento" type="nsS:ApontamentoProtesto">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações do apontamento do protesto.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>		
+					<xs:element name="intimacaoAR" type="nsS:IntimacaoAR" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação de intimação feita com AR – Aviso 
+                            de Recebimento. Preencher a “data da intimação”, o valor das “despesas com AR” 
+                            e opcionalmente o “motivo da devolução” da intimação. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="intimacaoPessoal" type="nsS:IntimacaoPessoal" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação da intimação feita pessoalmente. 
+                            Preencher a “data da intimação”, o valor das “despesas da condução”, “despesas 
+                            da diligência” e opcionalmente o “motivo da devolução” da intimação. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="intimacaoEdital" type="nsS:IntimacaoEdital" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação intimação via edital. Preencher 
+                            a “data da intimação”, o valor das “despesas com edital” e o valor das “despesas 
+                            da intimação”. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="registro" type="nsS:Registro">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado ao conjunto de elementos que identifica o 
+                            registro de um ato nos livros da serventia.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="motivoAtraso" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Motivo do atraso na lavratura do ato – ato lavrado após o 
+							prazo legal a contar do protocolo do título. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="jurosMoratorios">
+						<xs:annotation>
+							<xs:documentation>Valor numérico dos juros moratórios.</xs:documentation>
+						</xs:annotation>					
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

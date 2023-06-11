@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CEmancipacao" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="emancipado" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações da pessoa que 
+                            está sendo emancipada.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>	
+					<xs:element name="filiacao" type="nsS:Pessoa" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo deve-se informar o parentesco do emancipado. 
+                            Devem ser informados tantos quantos existirem– pelo menos um é obrigatório.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="numeroSerieSeloEscritura" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto livre destinado à inserção das informações 
+                            do selo de fiscalização utilizado na escritura pública de emancipação. Como 
+                            a escritura pode ser lavrada em serviços de notas fora de Santa Catarina,
+                             não foi adotado o padrão obrigatório do selo digital de SC, de maneira que 
+                             é possível sejam inseridas informações em qualquer padrão. Caso a 
+                             emancipação decorra de processo judicial, sem a lavratura de escritura, 
+                             preencher com “não se aplica”.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="processoJudicial" type="nsS:ProcessoJudicial" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do número do processo judicial 
+                            do qual decorreu a declaração de emancipação. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

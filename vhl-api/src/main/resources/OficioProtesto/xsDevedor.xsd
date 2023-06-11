@@ -1,0 +1,40 @@
+<xs:schema 
+	jaxb:extensionBindingPrefixes="hj orm" 
+	jaxb:version="2.1" 
+	targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" 
+	xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" 
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" 
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">	
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>	
+	<xs:complexType name="Devedor">		
+		<xs:sequence>
+			<xs:element name="documentoDevedor" type="nsS:Documento">
+				<xs:annotation>
+                	<xs:documentation>Preencher  o “tipo de documento” conforme manual de tabelas padronizadas, item 2.21, “número do documento”, “órgão emissor” e “data de emissão”.</xs:documentation>
+                </xs:annotation>
+			</xs:element>										
+			<xs:element name="protesto" maxOccurs="unbounded">
+				<xs:annotation>
+    	        	<xs:documentation>Cada um dos títulos protestados em relação a um devedor.</xs:documentation>
+    	        </xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="protocolo" type="nsS:Protocolo"/>
+						<xs:element name="cancelamento" type="xs:boolean">
+							<xs:annotation>
+    	                    	<xs:documentation>Indica se este protesto foi cancelado.</xs:documentation>
+    	                    </xs:annotation>
+						</xs:element>
+						<xs:element name="dataCancelamento" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Data do cancelamento caso o protesto tenha sido cancelado.</xs:documentation>
+		                    </xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

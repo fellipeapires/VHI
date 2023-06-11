@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CNascimento" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:choice>
+						<xs:element name="nomeDeclarante" type="nsS:string255">
+							<xs:annotation>
+	                            <xs:documentation>O nome da pessoa responsável pela declaração 
+	                            de nascimento perante a serventia</xs:documentation>
+	                        </xs:annotation>
+                    	</xs:element>
+						<xs:element name="processoJudicial" type="nsS:ProcessoJudicial">
+							<xs:annotation>
+	                            <xs:documentation>Caso o registro de nascimento seja decorrente de decisão 
+	                            judicial, informar o número do processo.</xs:documentation>
+	                        </xs:annotation>
+	                    </xs:element>
+					</xs:choice>
+					<xs:element name="nome" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo em que se espera o nome da pessoa cujo registro 
+                            de nascimento está sendo realizado.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="filiacao" type="nsS:PessoaFiliacao" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo deve-se informar a filiação do nascido. O campo 
+                            foi especializado para representar o modelo pai(mãe)/avós, porém livre da 
+                            definição de gênero. Reflete, portanto, uma filiação e seus progenitores. 
+                            Para cada filiação é necessário relacionar ao menos um progenitor – é possível 
+                            relacionar tantos quantos existirem. Deve ser preenchido pelo menos um. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataHoraNascimento" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Campo em que deve ser informada a data e a hora do nascimento.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gemeos" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Estrutura planejada para conter as informações de tantos 
+							quantos forem os gêmeos da pessoa cujo nascimento se pretende registrar. 
+							Opcional.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="nomeGemeo">
+									<xs:annotation>
+			                            <xs:documentation>Nome do irmão gêmeo.</xs:documentation>
+			                        </xs:annotation>
+			                    </xs:element>
+								<xs:element name="matriculaGemeo" type="nsS:MatriculaRegistro">
+									<xs:annotation>
+			                            <xs:documentation>Matrícula no padrão CNJ)</xs:documentation>
+			                        </xs:annotation>
+			                    </xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="numeroDNV" type="nsS:string255">
+						<xs:annotation>
+                            <xs:documentation>Campo em que se espera o número da declaração de nascido vivo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="municipioNascimento" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Campo em que deve ser informado o código da cidade/município 
+							em que nasceu a pessoa, conforme manual de tabelas padronizadas, item 2.13.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="naturalidade" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Em virtude da Medida Provisória n. 776, já convertida 
+							em lei, está prevista a possibilidade de escolha do município de naturalidade 
+							na ocasião do registro de nascimento. Deve ser informado o código da cidade, 
+							conforme manual de tabelas padronizadas item 2.13. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="cpfnascido" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Tendo em vista a possibilidade de obtenção do CPF do 
+							nascido no momento do registro do ato, esta informação deve ser encaminhada 
+							se houver. Opcional.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+                            <xs:restriction base="nsS:string255">
+                                <xs:pattern value="\d{11}" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+					<xs:element name="sexo" type="nsS:sexo">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do sexo biológico da pessoa 
+                            que se pretende registrar.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="matricula" type="nsS:MatriculaRegistro">
+						<xs:annotation>
+							<xs:documentation>Número da matrícula obtida pelo registro de nascimento 
+							em conclusão, no padrão do CNJ, com um total de 32 dígitos.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

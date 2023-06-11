@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="EInventarioPartilha" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="deCujus" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo em que deverão ser inseridas as informações do de cujus. 
+                            Trata-se do elemento padrão e comum a todas as escrituras “parteEscritura”, 
+                            de modo que certos campos podem não ser aplicáveis à figura específica do de 
+                            cujus, embora constem da estrutura. Como em qualquer outra situação dessa 
+                            natureza, sempre que não houver informações solicitadas em campos obrigatórios, 
+                            deve-se adotar uma expressão de escape conforme previsto no manual, na 
+                            documentação técnica do projeto e no repositório de perguntas e respostas 
+                            disponível no portal do Selo Digital. No modelo podem ser listados mais de 
+                            um de cujus.</xs:documentation>
+                        </xs:annotation>                    
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="nsS:ParteEscritura">
+									<xs:sequence>
+										<xs:element name="dadosObito">
+											<xs:annotation>
+												<xs:documentation>Neste campo, deverão ser informados a 
+												“data do óbito”, “local do óbito” (endereço completo do 
+												local do óbito), ou quando indisponível a informação, o 
+												“local aproximado do óbito” (campo descritivo do local 
+												aproximado), e “seloCertidaoObito” (campo de texto livre 
+												para inserção do selo da certidão de óbito, não 
+												necessariamente selo oriundo do sistema do Selo Digital 
+												de Santa Catarina – quando inexistir selo na certidão 
+												oriunda de Estado que não o utilize, preencher o campo 
+												com “Não se aplica”).</xs:documentation>
+											</xs:annotation>	
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="dataObito" type="xs:date">
+														<xs:annotation>
+								                            <xs:documentation>Data do óbito</xs:documentation>
+								                        </xs:annotation>
+								                    </xs:element>	
+													<xs:choice>
+														<xs:element name="localObito" type="nsS:Endereco"/>
+														<xs:element name="localObitoAproximado">
+															<xs:annotation>
+																<xs:documentation>Informar local aproximado, 
+																quando no local de óbito não houver endereço.</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="nsS:string4000"/>
+															</xs:simpleType>
+														</xs:element>
+													</xs:choice>
+													<xs:element name="seloCertidaoObito" type="nsS:string255">
+														<xs:annotation>
+															<xs:documentation>campo de texto livre 
+															para inserção do selo da certidão de óbito, não 
+															necessariamente selo oriundo do sistema do Selo Digital 
+															de Santa Catarina – quando inexistir selo na certidão 
+															oriunda de Estado que não o utilize, preencher o campo 
+															com “Não se aplica”.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="herdeiro" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Campo em que devem ser inseridas as informações completas 
+							de todos os herdeiros envolvidos no ato.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="nsS:ParteEscritura">
+									<xs:sequence>
+										<xs:element name="advogadoAssistente">
+											<xs:annotation>
+                            					<xs:documentation>Neste campo, devem ser preenchidas 
+                            					obrigatoriamente as informações do advogado assistente 
+                            					de cada um dos herdeiros (podem ser advogados distintos 
+                            					para cada um dos herdeiros).</xs:documentation>
+                        					</xs:annotation>										
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="advogado" type="nsS:Pessoa">
+														<xs:annotation>
+								                            <xs:documentation>Informações do advogado.</xs:documentation>
+								                        </xs:annotation>
+								                    </xs:element>
+													<xs:element name="numeroOAB" type="xs:int">
+														<xs:annotation>
+								                            <xs:documentation>Número do registro do advogado 
+								                            na Ordem dos Advogados do Brasil.</xs:documentation>
+								                        </xs:annotation>
+								                    </xs:element>
+													<xs:element name="assistenciaJudiciaria" type="xs:boolean">
+														<xs:annotation>
+								                            <xs:documentation> Campo em que se espera a resposta 
+								                            à pergunta “o herdeiro é beneficiário da assistência 
+								                            judiciária gratuita?” (sim ou não).</xs:documentation>
+								                        </xs:annotation>
+								                    </xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="viuvoMeeiro" type="xs:boolean">
+											<xs:annotation>
+					                            <xs:documentation>Campo em que se espera a resposta à pergunta 
+					                            “o herdeiro é também viúvo(a) meeiro(a)?” (sim e não).</xs:documentation>
+					                        </xs:annotation>
+					                    </xs:element>
+										<xs:element name="inventariante" type="xs:boolean">
+											<xs:annotation>
+					                            <xs:documentation>Campo em que se espera a resposta à pergunta 
+					                            “o herdeiro é também o inventariante?” (sim e não).</xs:documentation>
+					                        </xs:annotation>
+					                    </xs:element>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="itcmd" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do imposto de transmissão 
+                            causa mortis e doação.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outrosImpostos" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação de todos os demais impostos 
+                            envolvidos no ato.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema" jaxb:extensionBindingPrefixes="hj orm" jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="ESubestabelecimento" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outorgante" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgantes da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>   
+                    </xs:element>
+					<xs:element name="outorgado" type="nsS:ParteEscritura" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgados da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataValidade" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Quando constar no ato, deve ser inserida neste campo a 
+							informação da data de validade do subestabelecimento. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="tipoSubestabelecimento">
+						<xs:annotation>
+							<xs:documentation>Código do tipo de subestabelecimento que se está a lavrar 
+							conforme manual de tabelas padronizadas, item 2.7.</xs:documentation>
+						</xs:annotation>						
+						<xs:simpleType>
+							<xs:restriction base="xs:int"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="poderesConferidos" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Campo de texto livre destinado à informação dos poderes 
+							especiais constantes do instrumento de substabelecimento.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

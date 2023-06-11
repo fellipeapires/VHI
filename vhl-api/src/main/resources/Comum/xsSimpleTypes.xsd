@@ -1,0 +1,95 @@
+<xs:schema targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"	 
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"	 
+	xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"	 
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	jaxb:extensionBindingPrefixes="hj orm" 
+	jaxb:version="2.1">  
+	<xs:simpleType name="MatriculaRegistro">
+		<xs:annotation>
+			<xs:documentation>número de matrícula do Registro Civil conforme padrão nacional CNJ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{32}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RegimeBens">
+		<xs:restriction base="nsS:string255">
+			<xs:enumeration value="Comunhão Parcial"/>
+			<xs:enumeration value="Comunhão Universal"/>
+			<xs:enumeration value="Participação Final nos Aquestos"/>
+			<xs:enumeration value="Separação de Bens"/>
+			<xs:enumeration value="Não Informado"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerieSelo">
+		<xs:annotation>
+			<xs:documentation>Código composto por três letras e cinco números que identifica unicamente um selo de fiscalização.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{3}\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sexo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Feminino"/>
+			<xs:enumeration value="Masculino"/>
+			<xs:enumeration value="Indefinido"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string4000">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoPessoa">
+		<xs:annotation>
+			<xs:documentation>Tipos de pessoa. Deve-se respeitar a acentuação e usar corretamente o charset.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Física"/>
+			<xs:enumeration value="Jurídica"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UF">
+		<xs:annotation>
+			<xs:documentation>Relação das UFs brasileiras, sendo "NI" = Não informado.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SC"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="RS"/>
+			<xs:enumeration value="SP"/>
+			<xs:enumeration value="MS"/>
+			<xs:enumeration value="MT"/>
+			<xs:enumeration value="MG"/>
+			<xs:enumeration value="RJ"/>
+			<xs:enumeration value="ES"/>
+			<xs:enumeration value="BA"/>
+			<xs:enumeration value="PE"/>
+			<xs:enumeration value="AC"/>
+			<xs:enumeration value="AP"/>
+			<xs:enumeration value="AM"/>
+			<xs:enumeration value="DF"/>
+			<xs:enumeration value="GO"/>
+			<xs:enumeration value="PI"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="RO"/>
+			<xs:enumeration value="RR"/>
+			<xs:enumeration value="TO"/>
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="CE"/>
+			<xs:enumeration value="PB"/>
+			<xs:enumeration value="RN"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="NI"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

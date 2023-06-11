@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CCancelamentoProtesto" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>					
+					<xs:element name="protesto" type="nsS:Protocolo" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Dentro do campo “protesto” (podem ser informados 
+                            vários elementos “protesto” em cada certidão), devem ser preenchidas 
+                            as informações do protocolo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>					
+					<xs:element name="motivoCancelamento" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Código do motivo do cancelamento, de acordo com o 
+							manual de tabelas padronizadas, item 2.3.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataProtesto" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Data do protesto. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataIntimacao" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Data da intimação. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

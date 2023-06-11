@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CMortePresumida" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="presumidamenteMorto" type="nsS:Pessoa">
+						<xs:annotation>
+                            <xs:documentation>Nesta estrutura, esperam-se as informações da pessoa que 
+                            está sendo presumida morta</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="filiacao" type="nsS:string255" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Neste campo deve-se informar o nome do parentesco do falecido. 
+                            Devem ser informados tantos quantos existirem – pelo menos um é obrigatório.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="nomeFilho" type="nsS:string255" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo em que se espera o(s) nome(s) do(s) filho(s) daquele 
+                            presumidamente morto, tantos quantos sejam os filhos, se houver. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataFalecimento" type="xs:date" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo em que deve ser informada a data do pretenso falecimento 
+                            do presumidamente morto, se existir. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="processoJudicial" type="nsS:ProcessoJudicial">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado à informação do número do processo 
+                            judicial do qual decorreu a declaração.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CHabilitacaoCasamento" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidaoRC" type="nsS:CertidaoRC">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório destinado às informações da certidão com 
+                            campos específicos para o registro civil. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="conjuge" type="nsS:Conjuge" minOccurs="2" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Dados do cônjuge. Devem ser informados pelo menos 2. 
+                            Contudo, o campo admite sejam inseridos tantos quantos existirem</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="regimeBens" type="nsS:RegimeBens">
+						<xs:annotation>
+                            <xs:documentation>Campo de texto destinado à informação do regime patrimonial 
+                            de bens adotado, dentre as opções “comunhão parcial”, “comunhão universal”, 
+                            “participação final nos aquestos”, “separação de bens” e “não informado”.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="dataFimHabilitacao" type="xs:date">
+						<xs:annotation>
+                            <xs:documentation>Campo obrigatório em que deve ser informada a data limite 
+                            de validade da habilitação para o casamento.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

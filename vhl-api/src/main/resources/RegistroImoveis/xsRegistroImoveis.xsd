@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="xsCCancelamentoMatricula.xsd"/>
+	<xs:include schemaLocation="xsCEncerramentoMatricula.xsd"/>
+	<xs:include schemaLocation="xsCInteiroTeorRI.xsd"/>
+	<xs:include schemaLocation="xsCOnus.xsd"/>
+	<xs:include schemaLocation="xsCNegativaBens.xsd"/>
+	<xs:include schemaLocation="xsCReipersecutoria.xsd"/>
+	<xs:include schemaLocation="xsCVintenaria.xsd"/>
+	<xs:include schemaLocation="xsAtoArtigo183Lei6015.xsd"/>
+	<xs:include schemaLocation="xsCAberturaMatricula.xsd"/>
+</xs:schema>

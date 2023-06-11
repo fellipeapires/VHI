@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CPositivaProtesto" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>	
+					<xs:element name="protesto" type="nsS:Protocolo" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Dentro do campo “protesto” (podem ser informados 
+                            vários elementos “protesto” em cada certidão), devem ser preenchidas 
+                            as informações do protocolo.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>		
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="ESeparacaoDivorcioPartilha" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="escritura" type="nsS:Escritura">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações da escritura.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outorgante" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgantes da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>                    
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="nsS:ParteEscritura">
+									<xs:sequence>
+										<xs:element name="advogadoAssistente" type="nsS:Advogado" minOccurs="0">
+											<xs:annotation>
+			                            		<xs:documentation>Neste campo, devem ser preenchidas 
+			                            		as informações do advogado assistente. Opcional.</xs:documentation>
+			                        		</xs:annotation>   
+			                        	</xs:element>	
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="outorgado" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Nesta ocasião, espera-se sejam qualificados todos os 
+                            outorgados da escritura. Devem ser informados tantos quantos existirem.</xs:documentation>
+                        </xs:annotation>                    
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="nsS:ParteEscritura">
+									<xs:sequence>
+										<xs:element name="advogadoAssistente" type="nsS:Advogado" minOccurs="0">
+											<xs:annotation>
+			                            		<xs:documentation>Neste campo, devem ser preenchidas 
+			                            		as informações do advogado assistente. Opcional.</xs:documentation>
+			                        		</xs:annotation>   
+			                        	</xs:element>	
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="corretor" type="nsS:Corretor" minOccurs="0">
+						<xs:annotation>
+                           <xs:documentation>Campo para as informaçõees do corretor. 
+                           Devem ser informados o “nomeCorretor” e do “numeroCreci”, 
+                           quando o negócio for por ele intermediado, ocasião em que 
+                           será obrigatório. Opcional.</xs:documentation>
+                       </xs:annotation>
+                    </xs:element>
+					<xs:element name="itcmd" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado à informação do imposto de 
+                            transmissão causa mortis e doação</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="outrosImpostos" type="nsS:ImpostosTaxas" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                           <xs:documentation>Campo destinado à informação de todos os demais 
+                           impostos envolvidos no ato.</xs:documentation>
+	                    </xs:annotation>
+	                </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

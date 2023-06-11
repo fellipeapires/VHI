@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema"	 
+	xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"	 
+	xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"	 
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	jaxb:extensionBindingPrefixes="hj orm" 
+	jaxb:version="2.1">
+	<xs:include schemaLocation="../Comum/xsComum.xsd"/>
+	<xs:complexType name="CGenerica" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="nsS:AtoSelado">
+				<xs:sequence>
+					<xs:element name="certidao" type="nsS:Certidao" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado às informações pertinentes a uma certidão. 
+                            4Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="registro" type="nsS:Registro" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo destinado ao conjunto de elementos que identifica 
+                            o registro de um ato nos livros (ou no acervo de modo geral) da serventia. 
+                            Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="descricaoCertidao">
+						<xs:annotation>
+							<xs:documentation>Campo destinado à descrição detalhada do tipo e motivo da 
+							certidão emitida (traslado de escritura, certidão negativa etc.). Nesta ocasião, 
+							importante que o notário atente para elementos que distingam e individualizem o
+							 documento, de modo a proporcionar a perfeita verificação de autenticidade do 
+							 ato por meio da consulta pública do Selo Digital.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="nsS:string4000"/>
+						</xs:simpleType>
+					</xs:element>					
+					<xs:element name="numeroAssento" type="xs:int" minOccurs="0">
+						<xs:annotation>
+                            <xs:documentation>Campo numérico em que deve ser inserido o número do assento 
+                            do ato a que se refere a certidão, se houver. Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>				
+					<xs:element name="observacoes" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Campo textual livre e destinado à inserção do inteiro teor 
+							da certidão, para permitir a correta exibição do ato na consulta pública do 
+							Selo Digital. Opcional na modelagem, é obrigatório consoante as normas da 
+							Corregedoria-Geral da Justiça.</xs:documentation>
+							<xs:appinfo>
+								<hj:basic>
+									<orm:lob/>
+								</hj:basic>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="seloOriginalComunicacao" type="nsS:SerieSelo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Número de série do Selo Digital para os atos de comunicação 
+							a outra serventia extrajudicial. Opcional.</xs:documentation>
+						</xs:annotation>
+					</xs:element>					
+					<xs:element name="nomeBusca" type="nsS:PessoaResumo" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+                            <xs:documentation>Pessoas a respeito de que foi realizada busca, para o caso 
+                            de expedição de certidão em forma de relação às entidades beneficiadas 
+                            (fins de ressarcimento). Devem ser informadas tantas quanto existirem. 
+                            Opcional.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

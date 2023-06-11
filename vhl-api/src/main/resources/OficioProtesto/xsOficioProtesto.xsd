@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="xsCApontamentoProtesto.xsd"/>
+	<xs:include schemaLocation="xsCCancelamentoProtesto.xsd"/>
+	<xs:include schemaLocation="xsInstrumentoProtesto.xsd"/>
+	<xs:include schemaLocation="xsCNarrativaProtesto.xsd"/>
+	<xs:include schemaLocation="xsCNegativaProtesto.xsd"/>
+	<xs:include schemaLocation="xsCPositivaProtesto.xsd"/>
+	<xs:include schemaLocation="xsCRelacaoProtesto.xsd"/>
+	<xs:include schemaLocation="xsCPagamentoTitulo.xsd"/>
+</xs:schema>

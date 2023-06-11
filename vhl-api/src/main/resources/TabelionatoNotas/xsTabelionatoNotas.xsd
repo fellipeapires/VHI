@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:nsS="http://www.tjsc.jus.br/selo/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tjsc.jus.br/selo/XMLSchema">
+	<xs:include schemaLocation="xsAutenticacao.xsd"/>
+	<xs:include schemaLocation="xsEAtaNotarial.xsd"/>
+	<xs:include schemaLocation="xsECompraVendaDoacaoConfDivida.xsd"/>
+	<xs:include schemaLocation="xsEDeclaratoria.xsd"/>
+	<xs:include schemaLocation="xsEEmancipacao.xsd"/>
+	<xs:include schemaLocation="xsEInventarioPartilha.xsd"/>
+	<xs:include schemaLocation="xsEPactoAntenupcial.xsd"/>
+	<xs:include schemaLocation="xsEUniaoEstavel.xsd"/>
+	<xs:include schemaLocation="xsEProcuracao.xsd"/>
+	<xs:include schemaLocation="xsESeparacaoDivorcioPartilha.xsd"/>
+	<xs:include schemaLocation="xsESubestabelecimento.xsd"/>
+	<xs:include schemaLocation="xsETestamento.xsd"/>
+	<xs:include schemaLocation="xsRecFirmaAutenticidade.xsd"/>
+	<xs:include schemaLocation="xsRecFirmaSemelhanca.xsd"/>
+	<xs:include schemaLocation="xsRecFirmaSinalPublico.xsd"/>
+	<xs:include schemaLocation="../Comum/xsCGenerica.xsd"/>
+</xs:schema>
