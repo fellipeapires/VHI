@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.13-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.vhlapi</groupId>
+	<artifactId>vhl-api</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>vhl-api</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+		
+		<!-- H2 -->
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>${project.basedir}/src/main/resources/xsAtos.xsd</source>
+						<source>${project.basedir}/src/main/resources/xsSeloDigital.xsd</source>
+						<source>${project.basedir}/src/main/resources/Comum/xsCGenerica.xsd</source>
+						<source>${project.basedir}/src/main/resources/Comum/xsComum.xsd</source>
+						<source>${project.basedir}/src/main/resources/Comum/xsPessoa.xsd</source>
+						<source>${project.basedir}/src/main/resources/Comum/xsSimpleTypes.xsd</source>
+						<source>${project.basedir}/src/main/resources/Comum/xsTituloCredito.xsd</source>
+						
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCApontamentoProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCCancelamentoProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCNarrativaProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCNegativaProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCPagamentoTitulo.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCPositivaProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsCRelacaoProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsDevedor.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsInstrumentoProtesto.xsd</source>
+						<source>${project.basedir}/src/main/resources/OficioProtesto/xsOficioProtesto.xsd</source>
+						
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCAusencia.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCCasamento.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCEmancipacao.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCHabilitacaoCasamento.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCInteiroTeor.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCInterdicao.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCMortePresumida.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCNascimento.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCNatimorto.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCNegativa.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCNotificacao.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCObito.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCPersonalidadeJuridica.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCRegistroPJ.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsCRegistroTD.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsEditalProclamas.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroCivil/xsRegistroCivil.xsd</source>
+						
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsAtoArtigo183Lei6015.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCAberturaMatricula.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCCancelamentoMatricula.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCEncerramentoMatricula.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCInteiroTeorRI.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCNegativaBens.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCOnus.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCReipersecutoria.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsCVintenaria.xsd</source>
+						<source>${project.basedir}/src/main/resources/RegistroImoveis/xsRegistroImoveis.xsd</source>
+						
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsAutenticacao.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEAtaNotarial.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsECompraVendaDoacaoConfDivida.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEDeclaratoria.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEEmancipacao.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEEmancipacao.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEPactoAntenupcial.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEProcuracao.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsESeparacaoDivorcioPartilha.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsESubestabelecimento.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsETestamento.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsEUniaoEstavel.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsRecFirmaAutenticidade.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsRecFirmaSemelhanca.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsRecFirmaSinalPublico.xsd</source>
+						<source>${project.basedir}/src/main/resources/TabelionatoNotas/xsTabelionatoNotas.xsd</source>
+					
+					</sources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
