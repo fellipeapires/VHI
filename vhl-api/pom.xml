@@ -22,10 +22,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<!-- jpamodelgen -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
@@ -58,6 +66,13 @@
 			<artifactId>wsdl4j</artifactId>
 		</dependency>
 		
+		<!-- Migration -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			 <version>5.2.4</version>
+		</dependency>
+		
 		<!-- H2 -->
 		<dependency>
 		    <groupId>com.h2database</groupId>
@@ -76,6 +91,20 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 		</dependency>
+		
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+		<dependency>
+		    <groupId>jakarta.xml.bind</groupId>
+		    <artifactId>jakarta.xml.bind-api</artifactId>
+		    <version>3.0.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -83,8 +112,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
-			
 			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -100,6 +137,7 @@
 				</executions>
 				<configuration>
 					<sources>
+					
 						<source>${project.basedir}/src/main/resources/xsAtos.xsd</source>
 						<source>${project.basedir}/src/main/resources/xsSeloDigital.xsd</source>
 						<source>${project.basedir}/src/main/resources/Comum/xsCGenerica.xsd</source>
