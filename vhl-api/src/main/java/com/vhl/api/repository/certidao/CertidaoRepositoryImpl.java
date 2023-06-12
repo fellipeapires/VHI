@@ -42,7 +42,7 @@ public class CertidaoRepositoryImpl implements CertidaoRepositoryQuery{
 
 	private Predicate[] criarRestricoes(CertidaoFilter filter, CriteriaBuilder builder, Root<CertidaoEntity> root) {
 		List<Predicate> predicates = new ArrayList<>();
-		if (filter.getFolhasExcedentes() != null) {
+		if (filter.getLocalArquivamento() != null) {
 			predicates.add(builder.equal(root.get(CertidaoEntity_.localArquivamento), filter.getLocalArquivamento()));
 		}
 		if (filter.getFolhasExcedentes() != null) {
