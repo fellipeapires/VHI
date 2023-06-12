@@ -36,7 +36,7 @@ public class SwaggerConfig {
 	}
 	
 	private Contact contact() {
-		return new Contact("Fellipe","","dev@felltech.com.br");
+		return new Contact("Fellipe","https://github.com/fellipeapires/VHI.git","fellipeapires@gmail.com");
 	}
 
 }
