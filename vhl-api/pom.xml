@@ -105,6 +105,12 @@
 		    <artifactId>jakarta.xml.bind-api</artifactId>
 		    <version>3.0.1</version>
 		</dependency>
+		
+		<!-- Seguranca 	-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
